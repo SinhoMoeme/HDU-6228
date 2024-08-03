@@ -100,13 +100,54 @@ int main(){
 }
 ```
 ## Explain | 題目講解
+Solving this problem requires clever logical thinking. The mathematical expression " $E_1 \cap E_2 \ldots \cap E_k$ " can be interpreted as the real meaning "the maximum number of edges which connects to all colors of nodes".<br>
+Thus, solving it becomes easy. You only need a DFS to get the sizes of the subtrees. Then for each subtree, if both the size of it and its complement are greater than or equal to $k$, this node(the root of it) must be able to connect $k$ colors of nodes.
 
+此題目需要一定的邏輯思維來解決。首先需要將數學表達「 $E_1 \cap E_2 \ldots \cap E_k$ 」轉換為題目所要表達的真實含義「連接所有種類顔色節點之邊的數目最大值」。<br>
+這時候，解出此題就非常簡單了。只需要透過DFS求出子樹的大小。然後對於每棵子樹，若子樹和它的補集大小均大於 $k$ ，則該點（子樹的根）必然可以同時連接 $k$ 種不同的節點。
 
 ### Variables | 變數
+``` C++
+constexpr size_t MAX=(size_t)2e5+1;
+int T,n,k,x,y,ans;
+long long a[MAX];
+vector<int> g[MAX];
+```
+$MAX$, $T$, $n$, $k$, $x$ and $y$: Given in the original problem.<br>
+$ans$: The final answer.<br>
+$a$: The size of the subtree<br>
+$g$: An adjacency list representation of the tree. For each origin $u$, $g[u] stores all the destination $v$.
 
+$MAX$ 、 $T$ 、 $n$ 、 $k$ 、 $x$ 和 $y$ ：原題所給。<br>
+$ans$ ：最終答案。<br>
+$a$ ：子樹大小。<br>
+$g$ ：樹的鄰接表。對於每一始發地 $u$ ， $g[u]$ 存儲所有的目的地 $v$ 。
 
 ### Functions | 函式
+```C++
+inline void dfs(int p=0,int u=1){
+	a[u]=1;
+	int v;
+	for(int i=0;i<g[u].size();++i){
+		v=g[u][i];
+		if(v==p) continue;
+		dfs(u,v);
+		a[u]+=a[v];
+	}
+	return;
+}
+```
+$dfs ()$: Get sizes of the subtrees.<br>
+Recursively calculate sizes of the subtrees.<br>
+Initialize the sizes of the subtree rooted at a new node with 1. Enumerate the edges whose origin is $u$, then add the size of the subtree rooted at $u$ with the size of the subtree root at $v$.
 
+$dfs ()$：求子樹大小。<br>
+遞迴地計算子樹大小。<br>
+把根為新結點的子樹大小初始化爲1，然後枚舉每一條始發地為 $u$ 的邊，將根為 $v$ 之子樹的大小加到根為 $u$ 之子樹的大小。
 
 ### Other | 其他
+The original text " $E_1 \cap E_1 \ldots \cap E_k$ " in the Output section contains a typo. It should actually be " $E_1 \cap E_2 \ldots \cap E_k$ ".<br>
+You can read the sample to aid your thinking.
 
+Output部分中的「 $E_1 \cap E_1 \ldots \cap E_k$ 」原文如此。實際應為「 $E_1 \cap E_2 \ldots \cap E_k$ 」。<br>
+參考測試資料可以幫助理解。
