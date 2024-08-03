@@ -116,7 +116,7 @@ vector<int> g[MAX];
 $MAX$, $T$, $n$, $k$, $x$ and $y$: Given in the original problem.<br>
 $ans$: The final answer.<br>
 $a$: The size of the subtree rooted at $i$.<br>
-$g$: An adjacency list representation of the tree. For each origin $u$, $g[u] stores all the destination $v$.
+$g$: An adjacency list representation of the tree. For each origin $u$, $g[u]$ stores all the destination $v$.
 
 $MAX$ 、 $T$ 、 $n$ 、 $k$ 、 $x$ 和 $y$ ：原題所給。<br>
 $ans$ ：最終答案。<br>
