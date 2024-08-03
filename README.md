@@ -115,12 +115,12 @@ vector<int> g[MAX];
 ```
 $MAX$, $T$, $n$, $k$, $x$ and $y$: Given in the original problem.<br>
 $ans$: The final answer.<br>
-$a$: The size of the subtree<br>
+$a$: The size of the subtree rooted at $i$.<br>
 $g$: An adjacency list representation of the tree. For each origin $u$, $g[u] stores all the destination $v$.
 
 $MAX$ 、 $T$ 、 $n$ 、 $k$ 、 $x$ 和 $y$ ：原題所給。<br>
 $ans$ ：最終答案。<br>
-$a$ ：子樹大小。<br>
+$a$ ：以 $i$ 为根的子樹大小。<br>
 $g$ ：樹的鄰接表。對於每一始發地 $u$ ， $g[u]$ 存儲所有的目的地 $v$ 。
 
 ### Functions | 函式
